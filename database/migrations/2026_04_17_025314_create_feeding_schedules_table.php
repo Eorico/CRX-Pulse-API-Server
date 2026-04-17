@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('api_storages', function (Blueprint $table) {
+        Schema::create('feeding_schedules', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('title');
-            $table->string('url');
-            $table->text('description')->nullable();
+            $table->time('feeding_time');
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('api_storages');
+        Schema::dropIfExists('feeding_schedules');
     }
 };
