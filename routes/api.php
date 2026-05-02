@@ -4,16 +4,32 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DeviceController;
 use App\Http\Controllers\Api\FeedingController;
 use App\Http\Controllers\Api\SensorController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
 /* Routes => group route*/
-Route::prefix('auth')->group(function () {
-    Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/login', [AuthController::class, 'login']);
-});
 
+/*
+    api/auth/register
+    api/auth/login
+*/
+Route::prefix('auth')
+    ->group(function () 
+    {
+        Route::post('/register', [AuthController::class, 'register']);
+        Route::post('/login', [AuthController::class, 'login']);
+    });
+
+/*
+    api/sensor/
+    api/sensor/latest
+
+    api/feeding/
+
+    api/device/command
+    api/device/commands
+    api/device/commands/{id}/done
+*/
 Route::middleware('auth:sanctum')
     ->group(function () 
     {
